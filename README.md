@@ -27,7 +27,7 @@ Um pipeline em Airflow que aplica **hashing SHA-256 na extração**, eliminando 
 
 O fluxo foi desenhado com o princípio de **não armazenar PII em nenhum momento**.
 
-graph LR
+```graph LR
     subgraph Fontes_Externas
     A[CRM Salesforce]
     B[Facebook Ads API]
@@ -46,6 +46,7 @@ graph LR
 
     style C fill:#ff9999,stroke:#333,stroke-width:2px
     style E fill:#99ff99,stroke:#333,stroke-width:2px
+```
 
 
 ## 🛠️ Tech Stack
