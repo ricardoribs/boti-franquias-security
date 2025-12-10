@@ -1,0 +1,50 @@
+[2025-12-10T12:16:54.960+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2025-12-10T12:16:55.324+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: boti_franquias_etl.carga_banco_dados manual__2025-12-10T12:16:26.216126+00:00 [queued]>
+[2025-12-10T12:16:55.402+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: boti_franquias_etl.carga_banco_dados manual__2025-12-10T12:16:26.216126+00:00 [queued]>
+[2025-12-10T12:16:55.407+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2025-12-10T12:16:55.575+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): carga_banco_dados> on 2025-12-10 12:16:26.216126+00:00
+[2025-12-10T12:16:55.709+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'boti_franquias_etl', 'carga_banco_dados', 'manual__2025-12-10T12:16:26.216126+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/etl_franquias.py', '--cfg-path', '/tmp/tmpvatfx_uq']
+[2025-12-10T12:16:55.744+0000] {standard_task_runner.py:91} INFO - Job 3: Subtask carga_banco_dados
+[2025-12-10T12:16:55.736+0000] {logging_mixin.py:188} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=320) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2025-12-10T12:16:55.750+0000] {standard_task_runner.py:63} INFO - Started process 322 to run task
+[2025-12-10T12:16:56.175+0000] {task_command.py:426} INFO - Running <TaskInstance: boti_franquias_etl.carga_banco_dados manual__2025-12-10T12:16:26.216126+00:00 [running]> on host 1800242b65c2
+[2025-12-10T12:16:57.251+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='boti_franquias_etl' AIRFLOW_CTX_TASK_ID='carga_banco_dados' AIRFLOW_CTX_EXECUTION_DATE='2025-12-10T12:16:26.216126+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-12-10T12:16:26.216126+00:00'
+[2025-12-10T12:16:57.254+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2025-12-10T12:16:57.309+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2025-12-10T12:16:57.334+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/etl_franquias.py", line 62, in carregar_no_banco
+    engine = pg_hook.get_sqlalchemy_engine()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/common/sql/hooks/sql.py", line 219, in get_sqlalchemy_engine
+    return create_engine(self.get_uri(), **engine_kwargs)
+                         ^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/providers/postgres/hooks/postgres.py", line 190, in get_uri
+    conn = self.get_connection(getattr(self, self.conn_name_attr))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/hooks/base.py", line 83, in get_connection
+    conn = Connection.get_connection_from_secrets(conn_id)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/connection.py", line 519, in get_connection_from_secrets
+    raise AirflowNotFoundException(f"The conn_id `{conn_id}` isn't defined")
+airflow.exceptions.AirflowNotFoundException: The conn_id `***_db` isn't defined
+[2025-12-10T12:16:57.362+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=boti_franquias_etl, task_id=carga_banco_dados, run_id=manual__2025-12-10T12:16:26.216126+00:00, execution_date=20251210T121626, start_date=20251210T121655, end_date=20251210T121657
+[2025-12-10T12:16:57.407+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 3 for task carga_banco_dados (The conn_id `***_db` isn't defined; 322)
+[2025-12-10T12:16:57.493+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2025-12-10T12:16:57.551+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-12-10T12:16:57.560+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
