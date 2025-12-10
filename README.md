@@ -73,12 +73,12 @@ Dados anonimizados são enviados para tabelas PostgreSQL prontas para BI, dbt ou
 1. Fluxo no Airflow
 DAG executada com sucesso, com logs exibindo o processo de anonimização.
 
-![Fluxo Airflow]()
+![Fluxo Airflow](https://github.com/ricardoribs/boti-franquias-security/blob/main/airflow_graph.png.PNG)
 
 2. Validação no Banco
 Consulta SQL mostrando que colunas de PII foram substituídas por hashes irreversíveis.
 
-![Terminal SQL]()
+![Terminal SQL](https://github.com/ricardoribs/boti-franquias-security/blob/main/resultado_final.png.PNG)
 
 ## 🚀 Como Executar
 # 1. Clone o repositório
