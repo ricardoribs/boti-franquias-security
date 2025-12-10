@@ -27,26 +27,26 @@ Um pipeline em Airflow que aplica **hashing SHA-256 na extração**, eliminando 
 
 O fluxo foi desenhado com o princípio de **não armazenar PII em nenhum momento**.
 
-```mermaid
 graph LR
-    subgraph Fontes Externas
-    A[CRM Salesforce] 
+    subgraph Fontes_Externas
+    A[CRM Salesforce]
     B[Facebook Ads API]
     end
 
-    subgraph Ingestão Segura (Airflow)
-    A -->|Extração Python| C{Função de Hashing}
-    B -->|Extração Python| D[Dados de Custo]
+    subgraph Ingestao_Segura_Airflow
+    A -->|Extracao Python| C{Funcao de Hash}
+    B -->|Extracao Python| D[Dados de Custo]
     C -->|SHA-256| E[Dado Anonimizado]
     end
 
-    subgraph Data Warehouse
+    subgraph Data_Warehouse
     E -->|Carga| F[(PostgreSQL - Tabela Vendas)]
     D -->|Carga| G[(PostgreSQL - Tabela Ads)]
     end
 
     style C fill:#ff9999,stroke:#333,stroke-width:2px
     style E fill:#99ff99,stroke:#333,stroke-width:2px
+
 
 ## 🛠️ Tech Stack
  • Orquestração: Apache Airflow 2.9 (Containerizado)
